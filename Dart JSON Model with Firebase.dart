@@ -53,4 +53,17 @@ class $classname extends Object {
     static ${classname} jsonTo${classname}(Map<String, dynamic> map) {
         return ${classname}.fromJson(map);
     }
+  
+    /// Used with @JsonSerializable & @JsonKey(fromJson: ${classname}.jsonTo${classname}List)
+    static List<${classname}> jsonTo${classname}List(List<Map<String, dynamic>>? map) {
+        return (map ?? []).map((e) => ${classname}.fromJson(e)).toList();
+    }
+    
+    /// Used with @JsonSerializable & @JsonKey(toJson: ${classname}.${smallLetterClassName}ListToJson)
+    static List<Map<String, dynamic>> ${smallLetterClassName}ListToJson(List<${classname}> list) {
+        return list.map((e) => e.toJson()).toList();
+    }
+
+    /// Used with @JsonSerializable & @JsonKey(fromJson: ${classname}.jsonTo${classname})
+    static Map<String, Object?> toFirestore(${classname} value, SetOptions? setOptions) => value.toJson();
 }

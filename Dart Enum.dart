@@ -29,4 +29,12 @@ extension ${classname}Ext on ${classname} {
     }
     return enums.entries.where((element) => element.value.toLowerCase() == _mode.toLowerCase()).first.key;
   }
+  
+  static List<String> asStringList(List<${classname}> list) {
+    return list.map(${classname}Ext.asString).toList();
+  }
+
+  static List<${classname}> parseList(List<String> list) {
+    return list.map(${classname}Ext.parse).toList();
+  }
 }
