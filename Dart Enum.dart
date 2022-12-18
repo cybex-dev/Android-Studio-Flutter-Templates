@@ -6,35 +6,16 @@
 #end
 #set( $varname = $classname.substring(0, 1).toLowerCase() + $classname.substring(1) )
 
+@JsonEnum(valueField: "${$varname}")
 enum ${classname} {
-    First
-}
+  // @JsonValue("user")
+  // user("user"),
 
-extension ${classname}Ext on ${classname} {
-  static const enums = {
-    ${classname}.First: 'first',
-  };
-  
-  String string() {
-    return enums[this] ?? "";
-  }
-  
-  static String asString(${classname} ${varname}) {
-    return enums[${varname}] ?? "";
-  }
+  final String key;
 
-  static ${classname} parse(String _mode) {
-    if(_mode == "") {
-      return ${classname}.First;
-    }
-    return enums.entries.where((element) => element.value.toLowerCase() == _mode.toLowerCase()).first.key;
-  }
-  
-  static List<String> asStringList(List<${classname}> list) {
-    return list.map(${classname}Ext.asString).toList();
-  }
+  const ${classname}(this.key);
 
-  static List<${classname}> parseList(List<String> list) {
-    return list.map(${classname}Ext.parse).toList();
-  }
+  static ${classname} parse(String key) => ${classname}.values.where((element) => element.mode.toLowerCase() == value.toLowerCase()).first;
+
+  static String asString(${classname} key) => key.key;
 }
