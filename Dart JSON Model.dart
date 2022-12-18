@@ -15,16 +15,9 @@ part #[[']]#$NAME#[[.g.dart']]#;
 @JsonSerializable(explicitToJson: true)
 class $classname extends Object {
 
-    // TODO: add class properties and constructor parameters
     $classname();
-    
-    /// A necessary factory constructor for creating a new User instance
-    /// from a map. Pass the map to the generated `_#[[$]]#${classname}FromJson()` constructor.
-    /// The constructor is named after the source class, in this case, ${classname}.
+
     factory $classname#[[.fromJson(Map<String, dynamic> json) => _$]]#${classname}FromJson(json);
-        
-    /// `toJson` is the convention for a class to declare support for serialization
-    /// to JSON. The implementation simply calls the private, generated
-    /// helper method `_#[[$]]#${classname}ToJson`.
+
     #[[Map<String, dynamic> toJson() => _$]]#${classname}ToJson(this);
 }
