@@ -17,7 +17,7 @@ class $classname extends Equatable {
     @JsonKey(name: "id")
     final String id;
 
-    $classname({
+    const $classname({
         required this.id,
     });
 
@@ -37,7 +37,7 @@ class $classname extends Equatable {
 
     static Map<String, Object?> toFirestore(${classname} value, SetOptions? setOptions) => value.toJson();
 
-    static ${classname} empty() => ${classname}(id: '');
+    static ${classname} empty() => const ${classname}(id: '');
 
     @override
     List<Object?> get props => [id];
