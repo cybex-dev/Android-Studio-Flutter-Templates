@@ -6,64 +6,47 @@
 #end
 #set( $smallLetterClassName = $classname.substring(0, 1).toLowerCase() + $classname.substring(1))
 
-import 'package:firebase_database/firebase_database.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 
-/// This allows the `${classname}` class to access private members in
-/// the generated file. The value for this is *.g.dart, where
-/// the star denotes the source file name.
 part #[[']]#$NAME#[[.g.dart']]#;
 
 @JsonSerializable(explicitToJson: true)
 class $classname extends Object {
+    @JsonKey(name: "id")
+    final String id;
 
-    // TODO: add class properties and constructor parameters
-    $classname();
-    
-    /// A necessary factory constructor for creating a new User instance
-    /// from a map. Pass the map to the generated `_#[[$]]#${classname}FromJson()` constructor.
-    /// The constructor is named after the source class, in this case, ${classname}.
+    $classname({
+        required this.id,
+    });
+
     factory $classname#[[.fromJson(Map<String, dynamic> json) => _$]]#${classname}FromJson(json);
-        
-    /// `toJson` is the convention for a class to declare support for serialization
-    /// to JSON. The implementation simply calls the private, generated
-    /// helper method `_#[[$]]#${classname}ToJson`.
-    #[[Map<String, dynamic> toJson() => _$]]#${classname}ToJson(this);
-    
-    /// Firebase fromDocumentSnapshot can be used with `withConverter(from ...)
-    factory $classname#[[.fromDocumentSnapshot({required DocumentSnapshot<Map<String, dynamic>> doc}) => ]]#$classname#[[.fromJson(doc.data() ?? {});]]#
-    
-    /// Firebase toDocumentSnapshot can be used with `withConverter(to ...)
-    factory $classname#[[.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc, SnapshotOptions? options) => ]]#$classname#[[.fromJson(doc.data() ?? {});]]#
-    
-    /// Used with @JsonSerializable & @JsonKey(toJson: ${classname}.${smallLetterClassName}ToJson)
-    static Map<String, dynamic> ${smallLetterClassName}ToJson(${classname} ${smallLetterClassName}) {
-        return ${smallLetterClassName}.toJson();
-    }
-    
-    /// Firebase Realtime Database converter onValue stream
-    factory $classname#[[.fromDynamicJsonMap({required DataSnapshot snapshot})]]# {
-        var snapshotData = snapshot.value as Map;
-        var map = snapshotData.map((key, value) => MapEntry<String, dynamic>(key.toString(), value));
-        return ${classname}.fromJson(map);
-    }
-    
-    /// Used with @JsonSerializable & @JsonKey(fromJson: ${classname}.jsonTo${classname})
-    static ${classname} jsonTo${classname}(Map<String, dynamic> map) {
-        return ${classname}.fromJson(map);
-    }
-  
-    /// Used with @JsonSerializable & @JsonKey(fromJson: ${classname}.jsonTo${classname}List)
-    static List<${classname}> jsonTo${classname}List(List<Map<String, dynamic>>? map) {
-        return (map ?? []).map((e) => ${classname}.fromJson(e)).toList();
-    }
-    
-    /// Used with @JsonSerializable & @JsonKey(toJson: ${classname}.${smallLetterClassName}ListToJson)
-    static List<Map<String, dynamic>> ${smallLetterClassName}ListToJson(List<${classname}> list) {
-        return list.map((e) => e.toJson()).toList();
-    }
 
-    /// Used with @JsonSerializable & @JsonKey(fromJson: ${classname}.jsonTo${classname})
+    #[[Map<String, dynamic> toJson() => _$]]#${classname}ToJson(this);
+
+    factory $classname#[[.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc, SnapshotOptions? options) => ]]#$classname#[[.fromJson(doc.data() ?? {}).copyWith(id: doc.id);]]#
+
+    static Map<String, dynamic> ${smallLetterClassName}ToJson(${classname} ${smallLetterClassName}) => ${smallLetterClassName}.toJson();
+
+    static ${classname} jsonTo${classname}(Map<String, dynamic> map) => ${classname}.fromJson(map);
+
+    static List<${classname}> jsonTo${classname}List(List<Map<String, dynamic>>? map) => (map ?? []).map((e) => ${classname}.fromJson(e)).toList();
+
+    static List<Map<String, dynamic>> ${smallLetterClassName}ListToJson(List<${classname}> list) => list.map((e) => e.toJson()).toList();
+
     static Map<String, Object?> toFirestore(${classname} value, SetOptions? setOptions) => value.toJson();
+
+    static ${classname} empty() => ${classname}();
+
+    @override
+    List<Object?> get props => [];
+
+    ${classname} copyWith({
+        String? id,
+    }) {
+        return ${classname}(
+            id: id ?? this.id,
+        );
+    }
 }
