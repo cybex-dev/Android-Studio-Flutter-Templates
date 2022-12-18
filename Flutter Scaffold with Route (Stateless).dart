@@ -20,9 +20,11 @@ class $classname extends StatelessWidget {
 
     static const String name = "${_route}";
     
-    static Route<E?> route({$argsname arguments = const $argsname()}) => CupertinoPageRoute<E?>(builder: (_) => const ${classname}(arguments: arguments));
+    static Route route({$argsname arguments = const $argsname(), String? title}) =>
+        CupertinoPageRoute(builder: (_) => ${classname}(arguments: arguments), title: title, settings: RouteSettings(name: name, arguments: arguments));
     
-    static Page page() => const CupertinoPage(child: ${classname}(arguments: ${argsname}()));
+    static Page page({UiArgs arguments = const UiArgs(), String? title}) =>
+        CupertinoPage(child: const ${classname}(arguments: ${argsname}()), title: title, name: name, arguments: arguments);
 
     final $argsname arguments;
   
