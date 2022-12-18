@@ -13,7 +13,7 @@ import 'package:equatable/equatable.dart';
 part #[[']]#$NAME#[[.g.dart']]#;
 
 @JsonSerializable(explicitToJson: true)
-class $classname extends Object {
+class $classname extends Equatable {
     @JsonKey(name: "id")
     final String id;
 
@@ -37,10 +37,10 @@ class $classname extends Object {
 
     static Map<String, Object?> toFirestore(${classname} value, SetOptions? setOptions) => value.toJson();
 
-    static ${classname} empty() => ${classname}();
+    static ${classname} empty() => ${classname}(id: '');
 
     @override
-    List<Object?> get props => [];
+    List<Object?> get props => [id];
 
     ${classname} copyWith({
         String? id,

@@ -13,7 +13,7 @@ import 'package:equatable/equatable.dart';
 part #[[']]#$NAME#[[.g.dart']]#;
 
 @JsonSerializable(explicitToJson: true)
-class $classname extends Object {
+class $classname extends Equatable {
 
     $classname();
 
