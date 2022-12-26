@@ -11,6 +11,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 
 class $argsname {
     const $argsname(); 
@@ -19,11 +20,14 @@ class $argsname {
 class $classname extends StatelessWidget {
 
     static const String name = "${_route}";
+
+    static GoRoute goRoute({${argsname} arguments = const ${argsname}(), String? title}) =>
+        GoRoute(name: title, path: name, builder: (context, state) => $classname(arguments: arguments));
     
-    static Route route({$argsname arguments = const $argsname(), String? title}) =>
+    static Route route({${argsname} arguments = const ${argsname}(), String? title}) =>
         CupertinoPageRoute(builder: (_) => ${classname}(arguments: arguments), title: title, settings: RouteSettings(name: name, arguments: arguments));
     
-    static Page page({UiArgs arguments = const UiArgs(), String? title}) =>
+    static Page page({${argsname} arguments = const ${argsname}(), String? title}) =>
         CupertinoPage(child: const ${classname}(arguments: ${argsname}()), title: title, name: name, arguments: arguments);
 
     final $argsname arguments;
