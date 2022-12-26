@@ -9,9 +9,14 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import #[[']]#$NAME#[[.mocks.dart']]#;
 
 part #[[']]#$NAME#[[.g.dart']]#;
 
+// Annotation which generates the ${classname}.mocks.dart library and the MockCat class.
+@GenerateNiceMocks([MockSpec<${classname}>()])
 @JsonSerializable(explicitToJson: true)
 class $classname extends Equatable {
     @JsonKey(name: "id")
